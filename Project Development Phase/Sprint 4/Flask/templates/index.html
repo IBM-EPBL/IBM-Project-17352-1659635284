@@ -1,0 +1,35 @@
+<html style="text-align:center">
+    <h1 style = "text-align: center;">Real Time Communication using AI for specially abled</h1>
+    <link rel="stylesheet" href="/static/index.css">
+    <div id = "gallery" style="margin:10px">
+    </div>
+    <script>
+        function test_func(data) {
+            for(i=0;i<data.length;i++){
+                item = document.createElement("img");
+                const x = `../static/${data[i]}`
+                item.setAttribute("src",x);
+                item.setAttribute("height","200");
+                item.setAttribute("width","200");
+                item.setAttribute("margin","10")
+                item.setAttribute("border","2px dashed black")
+                document.getElementById("gallery").appendChild(item);
+            }
+        }
+        test_func({{ images|safe }})
+    </script>
+    <div>
+        <form action = "http://localhost:5000/" method="post" enctype="multipart/form-data" id="form" style="border:2px solid black;
+        box-shadow: 5px 5px 5px;text-align:center;padding:10px;margin:0 auto; width:600px;height:300px">
+            <br/><br/>
+            <input style="padding:10px;" type="file" name="pic" value="Upload image">
+            <br/><br/>
+            <input style="padding:10px;" type="submit" name = "upload" value="Upload">
+            <br/><br/>
+            <input style="padding:10px;" type="submit" name = "predict" value="Predict">
+            </form>
+    </div>
+    <div id = "ans">
+        <h2 style="color:green;">{{ msg1 }}</h2>
+    </div>
+</html>
